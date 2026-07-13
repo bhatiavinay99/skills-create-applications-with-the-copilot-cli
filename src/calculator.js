@@ -60,20 +60,25 @@ function divide(a, b) {
   return a / b;
 }
 
-// Supported operations map
-const operations = { add, subtract, multiply, divide };
+// Supported operations map (short and long form aliases)
+const operations = {
+  add, addition: add,
+  subtract, subtraction: subtract,
+  multiply, multiplication: multiply,
+  divide,
+};
 
 // CLI entry point
 if (require.main === module) {
   const [, , op, num1, num2] = process.argv;
 
   if (!op || num1 === undefined || num2 === undefined) {
-    console.error("Usage: node calculator.js <add|subtract|multiply|divide> <num1> <num2>");
+    console.error("Usage: node calculator.js <add|addition|subtract|subtraction|multiply|multiplication|divide> <num1> <num2>");
     process.exit(1);
   }
 
   if (!operations[op]) {
-    console.error(`Unknown operation: "${op}". Supported: add, subtract, multiply, divide`);
+    console.error(`Unknown operation: "${op}". Supported: add/addition, subtract/subtraction, multiply/multiplication, divide`);
     process.exit(1);
   }
 
